@@ -20,7 +20,7 @@ def login(username, password):
     return authorization_header
 
 
-base_url = "http://3.84.18.152:5007"
+base_url = os.getenv("BASE_URL")
 username = os.getenv("USERNAME")
 password = os.getenv("PASSWORD")
 if not username or not password:
@@ -39,4 +39,4 @@ item_simulator = ItemSimulator(base_url, authorization_header)
 # print("choice")
 # item = item_simulator.create_item_data((0, 200))
 # item_simulator.create_item(item)
-item_simulator.create_many_items(1000, (0, 200))
+item_simulator.create_many_items(5, (0, 200))
