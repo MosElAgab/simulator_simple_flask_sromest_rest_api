@@ -13,6 +13,7 @@ class ItemSimulator:
 
     # TODO: add logic for when api call fails
     def get_stores(self) -> dict:
+        # TODO: should retrun an empty list and logs failed response
         response = requests.get(f"{self.base_url}/store")
         return response.json()
 
@@ -51,4 +52,3 @@ class ItemSimulator:
         for i in range(number_of_items):
             item_data= self.create_item_data(price_range)
             self.create_item(item_data)
-
