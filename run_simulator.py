@@ -3,6 +3,7 @@ import requests
 from dotenv import load_dotenv
 
 from store_simulator import StoreSimulator
+from item_simulator import ItemSimulator
 
 load_dotenv()
 
@@ -27,8 +28,15 @@ if not username or not password:
 
 authorization_header = login(username, password)
 store_simulator = StoreSimulator(base_url, authorization_header)
+item_simulator = ItemSimulator(base_url, authorization_header)
 
+# store_simulator.create_many_stores(5)
+# stores = item_simulator.get_stores()
+# ids = item_simulator.get_store_ids(stores)
 
-store_simulator.create_many_stores(5)
-stores = store_simulator.get_stores()
-ids = store_simulator.get_store_ids(stores)
+# print(ids)
+
+# print("choice")
+# item = item_simulator.create_item_data((0, 200))
+# item_simulator.create_item(item)
+item_simulator.create_many_items(1000, (0, 200))
