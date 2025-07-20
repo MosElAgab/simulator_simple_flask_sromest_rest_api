@@ -2,27 +2,14 @@ import requests
 import random
 from faker import Faker
 
+from query_base import QueryBase
+
 faker = Faker()
 
+
 # TODO: add retry or timeout logic to avoid infinite waits
-class ItemSimulator:
+class ItemSimulator(QueryBase):
     
-    def __init__(self, base_url: str, authorization_header: dict):
-        self.base_url = base_url
-        self.authorization_header = authorization_header
-
-    # TODO: add logic for when api call fails
-    def get_stores(self) -> dict:
-        # TODO: should retrun an empty list and logs failed response
-        response = requests.get(f"{self.base_url}/store")
-        return response.json()
-
-
-    def get_store_ids(self, stores: list) -> list:
-        store_ids = [store["store_id"] for store in stores]
-        return store_ids
-    
-
     def create_item_data(self, price_range: tuple) -> dict:
         stores = self.get_stores()
         # TODO: add logic to handle empty stores list
