@@ -8,14 +8,22 @@ from item_simulator import ItemSimulator
 load_dotenv()
 
 def login(username, password):
+    # TODO: add error handling
     login_data = {
         "username": username,
         "password": password
     }
+
     response = requests.post(f"{base_url}/login", json=login_data)
-    if response.ok:
+    if not response.ok:
+        raise RuntimeError(f"Login failed: {response.status_code} - {response.text}")
+    elif response.ok:
         print("logged in successfully")
+
     access_token = response.json().get("access_token")
+    if not access_token:
+        raise ValueError("Access token error.")
+
     authorization_header = {"Authorization": f"Bearer {access_token}"}
     return authorization_header
 
