@@ -2,24 +2,11 @@ import uuid
 import requests
 from faker import Faker
 
+from query_base import QueryBase
+
 faker = Faker()
 
-class StoreSimulator:
-
-    def __init__(self, base_url: str, authorization_header: dict):
-        self.base_url = base_url
-        self.authorization_header = authorization_header
-
-
-    def get_stores(self) -> list:
-        response = requests.get(f"{self.base_url}/store")
-        return response.json()
-
-
-    def get_store_ids(self, stores: list) -> list:
-        store_ids = [store["store_id"] for store in stores]
-        return store_ids
-
+class StoreSimulator(QueryBase):
 
     def create_store_data(self) -> dict:
         store_name = faker.company() + "-" + uuid.uuid4().hex[0:2]
