@@ -4,11 +4,13 @@ from dotenv import load_dotenv
 
 from store_simulator import StoreSimulator
 from item_simulator import ItemSimulator
+from tag_simulator import TagSimulator
 
 load_dotenv()
 
+# TODO: add create_user
+
 def login(username, password):
-    # TODO: add error handling
     login_data = {
         "username": username,
         "password": password
@@ -37,6 +39,7 @@ if not username or not password:
 authorization_header = login(username, password)
 store_simulator = StoreSimulator(base_url, authorization_header)
 item_simulator = ItemSimulator(base_url, authorization_header)
+tag_simulator = TagSimulator(base_url, authorization_header)
 
 # store_simulator.create_many_stores(5)
 # stores = item_simulator.get_stores()
@@ -47,4 +50,25 @@ item_simulator = ItemSimulator(base_url, authorization_header)
 # print("choice")
 # item = item_simulator.create_item_data((0, 200))
 # item_simulator.create_item(item)
-item_simulator.create_many_items(5, (0, 200))
+# item_simulator.create_many_items(5, (0, 200))
+
+# stores = item_simulator.get_stores()
+# # print(stores)
+# ids = item_simulator.get_store_ids(stores)
+# print(ids)
+
+# data = item_simulator.create_item_data((30, 40))
+# print(data)
+# item_simulator.create_item(data)
+# item_simulator.create_many_items(10, (30, 40))
+
+# data = tag_simulator.get_stores()
+# # print(data)
+# ids = tag_simulator.get_store_ids(data)
+# print(ids)
+
+# data = tag_simulator.create_tag_data()
+# tag_simulator.create_tag(data)
+
+# tag_simulator.create_many_tags(500)
+store_simulator.create_many_stores(10)
