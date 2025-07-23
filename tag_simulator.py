@@ -37,9 +37,3 @@ class TagSimulator(QueryBase):
         for i in range(number_of_tags):
             tag_data = self.create_tag_data()
             self.create_tag(tag_data)
-
-    # def create_many_items(self, number_of_items: int, price_range: tuple) -> None:
-    #     # TODO: Retrun created items
-    #     for i in range(number_of_items):
-    #         item_data= self.create_item_data(price_range)
-    #         self.create_item(item_data)
