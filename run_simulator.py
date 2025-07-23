@@ -10,6 +10,21 @@ load_dotenv()
 
 # TODO: add create_user
 
+def create_user(username, password):
+    user_data = {
+        "username": username,
+        "password": password
+    }
+    response = requests.post(f"{base_url}/register", json=user_data)
+
+    if not response.ok:
+        raise RuntimeError(f"User register failed: {response.status_code} - {response.text}")
+    elif response.ok:
+        print("Registered successfully")
+    
+    return response.json()
+
+
 def login(username, password):
     login_data = {
         "username": username,
@@ -36,39 +51,22 @@ password = os.getenv("PASSWORD")
 if not username or not password:
     raise ValueError("USERNAME or PASSWORD not set.")
 
+try:
+        create_user(username, password)
+except RuntimeError as e:
+    print(e)
+
 authorization_header = login(username, password)
 store_simulator = StoreSimulator(base_url, authorization_header)
 item_simulator = ItemSimulator(base_url, authorization_header)
 tag_simulator = TagSimulator(base_url, authorization_header)
 
-# store_simulator.create_many_stores(5)
-# stores = item_simulator.get_stores()
-# ids = item_simulator.get_store_ids(stores)
+number_of_stores = 0
+number_of_items = 10
+items_price_range = (10, 250)
+number_of_tags = 10
 
-# print(ids)
-
-# print("choice")
-# item = item_simulator.create_item_data((0, 200))
-# item_simulator.create_item(item)
-# item_simulator.create_many_items(5, (0, 200))
-
-# stores = item_simulator.get_stores()
-# # print(stores)
-# ids = item_simulator.get_store_ids(stores)
-# print(ids)
-
-# data = item_simulator.create_item_data((30, 40))
-# print(data)
-# item_simulator.create_item(data)
-# item_simulator.create_many_items(10, (30, 40))
-
-# data = tag_simulator.get_stores()
-# # print(data)
-# ids = tag_simulator.get_store_ids(data)
-# print(ids)
-
-# data = tag_simulator.create_tag_data()
-# tag_simulator.create_tag(data)
-
-# tag_simulator.create_many_tags(500)
-store_simulator.create_many_stores(10)
+if __name__ == "__main__":
+    store_simulator.create_many_stores(number_of_stores)
+    item_simulator.create_many_items(number_of_items, items_price_range)
+    tag_simulator.create_many_tags(number_of_tags)
