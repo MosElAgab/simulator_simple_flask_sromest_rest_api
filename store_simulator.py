@@ -26,8 +26,8 @@ class StoreSimulator(QueryBase):
         return response.json()
 
 
-    def create_many_stores(self, number_of_store: int) -> None:
+    def create_many_stores(self, number_of_stores: int) -> None:
         # TODO: return created stores.
-        for i in range(number_of_store):
+        for i in range(number_of_stores):
             store_data = self.create_store_data()
             self.create_store(store_data)

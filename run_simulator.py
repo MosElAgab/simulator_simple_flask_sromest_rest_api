@@ -61,7 +61,7 @@ store_simulator = StoreSimulator(base_url, authorization_header)
 item_simulator = ItemSimulator(base_url, authorization_header)
 tag_simulator = TagSimulator(base_url, authorization_header)
 
-number_of_stores = 0
+number_of_stores = 10
 number_of_items = 10
 items_price_range = (10, 250)
 number_of_tags = 10

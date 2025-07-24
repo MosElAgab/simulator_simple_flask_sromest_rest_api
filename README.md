@@ -69,5 +69,35 @@ This project is a simulator tool designed to generate test data for the [`simple
    ```bash
    cp .env.example .env #check .env.example for further details
    ```
+Then edit .env and update the values:
+```bash
+USERNAME=your_username
+PASSWORD=your_password
+BASE_URL=http://your-api-url
+```
 
 ---
+
+## 🚀 Usage
+```bash
+python run_simulator.py
+```
+The script will:
+- Register a user if not already registered
+- Login and retrieve a JWT access token
+- Create stores (set number_of_stores to be created)
+- Create items (set numbers_of_items to be created, set price_range)
+- Create tags (set numbers_of_tags to be created)
+
+---
+
+## Notes
+- Make sure your REST API is up and running before running the simulator.
+- Stores must exist before creating items or tags.
+- This script uses JWT-based authentication with Bearer tokens.
+
+---
+
+##  License
+
+This project is open-source and freely available for testing and educational purposes.
